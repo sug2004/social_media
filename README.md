@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Course - Social App
 
-## Getting Started
+## Overview
+This repository contains a **Next.js-based social media application** built using the App Router, PostgreSQL, Prisma, Clerk authentication, and TypeScript. It serves as a learning project for understanding **modern full-stack development** using Next.js 14.
 
-First, run the development server:
+## Project Structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+nextjs-course/
+│-- app/               # Application logic with Next.js App Router
+│   ├── layout.tsx     # Main layout component
+│   ├── page.tsx       # Home page with dynamic content fetching
+│   ├── profile/       # User profile pages
+│   ├── api/           # API route handlers for database interactions
+│   ├── auth/          # Authentication-related routes (Clerk)
+│-- components/        # Reusable UI components
+│-- lib/               # Utility functions (database, authentication, helpers)
+│-- prisma/            # Database schema and migrations
+│-- styles/            # Tailwind CSS configuration
+│-- public/            # Static assets
+│-- .env               # Environment variables for API keys
+│-- package.json       # Dependencies and scripts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
+- **Next.js 14** (App Router, Server Actions, Server Components)
+- **PostgreSQL** (Relational database for storing user & post data)
+- **Prisma ORM** (Type-safe database management)
+- **Clerk Authentication** (User authentication and session management)
+- **UploadThing** (File uploads for user images)
+- **Tailwind CSS & ShadCN** (Modern styling and UI components)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Main Features
+- **Authentication**: User sign-up/sign-in via Clerk
+- **Profile Management**: Users can update their profile details
+- **Post System**: Users can create, edit, and delete posts
+- **Likes & Comments**: Interaction features for social engagement
+- **Optimistic UI Updates**: Real-time updates using server actions
+- **API Handlers**: Efficient data fetching and caching strategies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Getting Started
+### 1. Clone the Repository
+```bash
+git clone https://github.com/sug2004/social_media.git
+```
 
-## Learn More
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Configure Environment Variables
+Create a `.env` file and add the necessary API keys:
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+DATABASE_URL=
+UPLOADTHING_TOKEN=
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Run Database Migrations
+```bash
+npx prisma migrate dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Start the Development Server
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+## Contribution
+Feel free to fork this repository and submit pull requests for improvements.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
+This project is licensed under the MIT License.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
