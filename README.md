@@ -1,4 +1,4 @@
-# Next.js Course - Social App
+# Next.js - Social Media
 
 ## Overview
 This repository contains a **Next.js-based social media application** built using the App Router, PostgreSQL, Prisma, Clerk authentication, and TypeScript. It serves as a learning project for understanding **modern full-stack development** using Next.js 14.
