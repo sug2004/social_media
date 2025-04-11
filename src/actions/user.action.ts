@@ -160,3 +160,57 @@ export async function toggleFollow(targetUserId: string) {
     return { success: false, error: "Error toggling follow" };
   }
 }
+
+export async function searchUsers(query: string) {
+  try {
+    const userId = await getDbUserId();
+    if (!query) return [];
+
+    const users = await prisma.user.findMany({
+      where: {
+        AND: [
+          {
+            OR: [
+              {
+                name: {
+                  contains: query,
+                  mode: 'insensitive', // Case-insensitive search
+                },
+              },
+              {
+                username: {
+                  contains: query,
+                  mode: 'insensitive',
+                },
+              },
+            ],
+          },
+          // Exclude the current user from results
+          ...(userId ? [{
+            NOT: {
+              id: userId,
+            },
+          }] : []),
+        ],
+      },
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        image: true,
+        _count: {
+          select: {
+            followers: true,
+            following: true,
+          },
+        },
+      },
+      take: 10, // Limit results to 10 users
+    });
+
+    return users;
+  } catch (error) {
+    console.log("Error searching users:", error);
+    return [];
+  }
+}
